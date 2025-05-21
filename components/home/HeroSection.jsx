@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Clipboard } from 'lucide-react';
 
 export default function HeroSection() {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle newsletter signup logic here
     alert(`Thank you for subscribing with: ${email}`);
     setEmail('');
   };
@@ -27,13 +27,13 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <Link 
                 href="/tracker" 
-                className="bg-white text-green-600 hover:bg-gray-100 font-medium py-3 px-6 rounded-lg shadow-md transition duration-300"
+                className="bg-white text-green-600 hover:bg-gray-2np00 font-medium py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center"
               >
                 Start Tracking
               </Link>
               <Link 
                 href="/about" 
-                className="bg-transparent border-2 border-white hover:bg-white hover:text-green-600 font-medium py-3 px-6 rounded-lg transition duration-300"
+                className="bg-transparent border-2 border-white hover:bg-white hover:text-green-600 font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center"
               >
                 Learn More
               </Link>
@@ -44,9 +44,7 @@ export default function HeroSection() {
             <div className="bg-white p-6 rounded-lg shadow-lg text-gray-800 w-full max-w-md">
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-green-100 rounded-full p-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
+                  <Clipboard className="h-8 w-8 text-green-600" />
                 </div>
               </div>
               <h3 className="text-xl font-bold text-center mb-4">Join Our Newsletter</h3>

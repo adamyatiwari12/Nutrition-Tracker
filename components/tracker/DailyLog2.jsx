@@ -2,21 +2,8 @@
 
 import { useNutrition } from '@/context/NutritionContext';
 
-export default function DailyLog() {
-  const { 
-    dailyLogs, 
-    selectedDate, 
-    setSelectedDate, 
-    removeFoodFromLog 
-  } = useNutrition();
-
-  // Get the current day's log or empty structure if it doesn't exist
-  const currentDayLog = dailyLogs[selectedDate] || {
-    breakfast: [],
-    lunch: [],
-    dinner: [],
-    snacks: []
-  };
+export default function DailyLog2() {
+  const { foodLog, removeFoodFromLog } = useNutrition();
 
   // Define meal sections with icons/emojis
   const mealSections = [
@@ -39,20 +26,12 @@ export default function DailyLog() {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Daily Food Log</h2>
-        <input
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2"
-        />
-      </div>
+      <h2 className="text-xl font-bold mb-4">Daily Food Log</h2>
 
       {mealSections.map((meal) => {
-        const foods = currentDayLog[meal.id];
+        const foods = foodLog[meal.id];
         const totals = getMealTotal(foods);
-        
+
         return (
           <div key={meal.id} className="mb-6">
             <div className="flex justify-between items-center mb-2 pb-1 border-b">
@@ -64,7 +43,7 @@ export default function DailyLog() {
                 </div>
               )}
             </div>
-            
+
             {foods.length === 0 ? (
               <p className="text-gray-500 italic text-sm">No foods logged</p>
             ) : (
