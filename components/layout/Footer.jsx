@@ -1,10 +1,10 @@
 export default function Footer() {
     return (
       <footer className="bg-gray-800 text-white mt-auto">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-12 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-xl font-bold">NutriTrack</p>
+              <p className="text-xl font-bold text-center">NutriTrack</p>
               <p className="text-sm text-gray-300">Track your nutrition journey with ease</p>
             </div>
             
