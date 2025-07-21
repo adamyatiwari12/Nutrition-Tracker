@@ -5,7 +5,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ProgressChart from '@/components/progress/ProgressChart';
 import StatsSummary from '@/components/progress/StatsSummary';
-import { NutritionProvider } from '@/context/NutritionContext';
 import { Calendar, TrendingUp, BarChart2, Award } from 'lucide-react';
 
 export default function ProgressPage() {
@@ -14,7 +13,6 @@ export default function ProgressPage() {
   return (
     <>
       <Navbar />
-      <NutritionProvider>
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-3xl font-bold text-white">Your Progress</h1>
@@ -101,7 +99,6 @@ export default function ProgressPage() {
         </div>
       )}
         </main>
-      </NutritionProvider>
       <Footer />
     </>
   );

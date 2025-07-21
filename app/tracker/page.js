@@ -5,13 +5,11 @@ import Footer from '@/components/layout/Footer';
 import FoodSearch2 from '@/components/tracker/FoodSearch2';
 import DailyLog2 from '@/components/tracker/DailyLog2';
 import NutritionSummary2 from '@/components/tracker/NutritionSummary2';
-import { NutritionProvider } from '@/context/NutritionContext';
 
 export default function TrackerPage() {
   return (
     <>
       <Navbar />
-      <NutritionProvider>
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-white">Nutrition Tracker</h1>
@@ -37,7 +35,6 @@ export default function TrackerPage() {
             <DailyLog2 />
           </div>
         </main>
-      </NutritionProvider>
       <Footer />
     </>
   );

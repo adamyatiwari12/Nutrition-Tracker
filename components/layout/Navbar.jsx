@@ -4,10 +4,14 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {Menu , X} from 'lucide-react';
+import { useAuthState } from 'react-firebase-hooks/auth'; 
+import { auth } from '@/app/firebase/config';
+import { signOut } from 'firebase/auth';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [user] = useAuthState(auth);
   
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -15,6 +19,11 @@ export default function Navbar() {
     { name: 'Progress', href: '/progress' },
     { name: 'About', href: '/about' },
   ];
+
+  function handleSignOut() {
+    signOut(auth)
+    sessionStorage.removeItem('user');
+  }
 
   return (
     <nav className="bg-green-600 text-white shadow-md">
@@ -40,6 +49,19 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            {!user ? <Link
+              href="/sign-in"
+              className="px-3 py-2 rounded-md text-sm font-medium bg-white text-green-600 hover:bg-gray-100"
+            >
+              Sign In
+            </Link> :
+            <Link
+              href="/"
+              className="px-3 py-2 rounded-md text-sm font-medium bg-white text-green-600 hover:bg-gray-100"
+              onClick={handleSignOut}
+            > 
+              Sign Out
+            </Link>}
           </div>
           
           <div className="flex md:hidden items-center">
@@ -53,6 +75,26 @@ export default function Navbar() {
                 <Menu className="h-6 w-6" />
               )}
             </button>
+            {!user ? (
+              <Link
+                href="/sign-in"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-green-600 hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sign In
+              </Link>
+            ) : (
+              <Link
+                href="/"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-green-600 hover:bg-gray-100"
+                onClick={() => {
+                  handleSignOut();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Sign Out
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -74,6 +116,7 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            
           </div>
         </div>
       )}

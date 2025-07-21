@@ -4,7 +4,6 @@ import { useState } from "react";
 import { searchFoods } from "@/lib/api2";
 import { useNutrition } from "@/context/NutritionContext"; 
 
-
 export default function FoodSearch2() {
   const [query, setQuery] = useState("");
   const [selectedMeal, setSelectedMeal] = useState("breakfast");
@@ -12,7 +11,7 @@ export default function FoodSearch2() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { addFoodToLog } = useNutrition();
+  const { addFoodToLog, foodLog } = useNutrition();
 
   const mealTypes = [
     { id: "breakfast", label: "Breakfast" },
@@ -32,13 +31,29 @@ export default function FoodSearch2() {
 
     try {
       const results = await searchFoods(query);
+      console.log('Search results:', results);
       setSearchResults(results);
     } catch (err) {
       setError('Failed to search for foods. Please try again.');
-      console.error(err);
+      console.error('Search error:', err);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleAddFood = (food, meal) => {
+    console.log('Adding food:', food, 'to meal:', meal);
+    
+    const foodToAdd = {
+      ...food,
+      calories: parseFloat(food.calories) || 0,
+      protein: parseFloat(food.protein) || 0,
+      carbs: parseFloat(food.carbs) || 0,
+      fat: parseFloat(food.fat) || 0
+    };
+    
+    console.log('Processed food to add:', foodToAdd);
+    addFoodToLog(foodToAdd, meal);
   };
 
   return (
@@ -143,7 +158,7 @@ export default function FoodSearch2() {
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => addFoodToLog(food, selectedMeal)}
+                        onClick={() => handleAddFood(food, selectedMeal)}
                         className="text-green-600 hover:text-green-900"
                       >
                         Add to {selectedMeal}

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 // Simplified Nutrition Context
 const NutritionContext = createContext();
@@ -16,36 +16,31 @@ export function NutritionProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Load saved data on initial load
-  useEffect(() => {
-    const savedLog = localStorage.getItem('foodLog');
-    
-    if (savedLog) {
-      setFoodLog(JSON.parse(savedLog));
-    }
-  }, []);
-
-  // Save to localStorage whenever data changes
-  useEffect(() => {
-    localStorage.setItem('foodLog', JSON.stringify(foodLog));
-  }, [foodLog]);
-
+  // Remove localStorage usage - just use React state
   const addFoodToLog = (food, mealType) => {
-    setFoodLog(prevLog => ({
-      ...prevLog,
-      [mealType]: [...prevLog[mealType], food]
-    }));
+    console.log('Adding food to log:', food, 'to meal:', mealType);
+    setFoodLog(prevLog => {
+      const newLog = {
+        ...prevLog,
+        [mealType]: [...prevLog[mealType], food]
+      };
+      console.log('New foodLog after adding:', newLog);
+      return newLog;
+    });
   };
 
   const removeFoodFromLog = (mealType, foodIndex) => {
+    console.log('Removing food from:', mealType, 'at index:', foodIndex);
     setFoodLog(prevLog => {
       const updatedMeal = [...prevLog[mealType]];
       updatedMeal.splice(foodIndex, 1);
       
-      return {
+      const newLog = {
         ...prevLog,
         [mealType]: updatedMeal
       };
+      console.log('New foodLog after removing:', newLog);
+      return newLog;
     });
   };
 

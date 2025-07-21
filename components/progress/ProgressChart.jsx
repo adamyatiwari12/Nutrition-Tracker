@@ -19,6 +19,8 @@ export default function ProgressChart() {
   const [nutrientType, setNutrientType] = useState('calories');
   
   // Create data for each meal type
+  console.log('FoodLog in ProgressChart:', foodLog);
+
   const chartData = [
     {
       name: 'Breakfast',
