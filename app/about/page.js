@@ -120,7 +120,6 @@ export default function AboutPage() {
   );
 }
 
-// Helper component for feature blocks
 function FeatureBlock({ icon, title, description }) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm">

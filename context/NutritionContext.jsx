@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState } from 'react';
 
-// Simplified Nutrition Context
 const NutritionContext = createContext();
 
 export function NutritionProvider({ children }) {
@@ -12,25 +11,18 @@ export function NutritionProvider({ children }) {
     dinner: [],
     snacks: []
   });
-  
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  // Remove localStorage usage - just use React state
   const addFoodToLog = (food, mealType) => {
-    console.log('Adding food to log:', food, 'to meal:', mealType);
     setFoodLog(prevLog => {
       const newLog = {
         ...prevLog,
         [mealType]: [...prevLog[mealType], food]
       };
-      console.log('New foodLog after adding:', newLog);
       return newLog;
     });
   };
 
   const removeFoodFromLog = (mealType, foodIndex) => {
-    console.log('Removing food from:', mealType, 'at index:', foodIndex);
     setFoodLog(prevLog => {
       const updatedMeal = [...prevLog[mealType]];
       updatedMeal.splice(foodIndex, 1);
@@ -39,7 +31,6 @@ export function NutritionProvider({ children }) {
         ...prevLog,
         [mealType]: updatedMeal
       };
-      console.log('New foodLog after removing:', newLog);
       return newLog;
     });
   };
@@ -61,8 +52,6 @@ export function NutritionProvider({ children }) {
 
   const value = {
     foodLog,
-    isLoading,
-    error,
     addFoodToLog,
     removeFoodFromLog,
     calculateTotals

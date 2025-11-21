@@ -2,10 +2,9 @@
 
 import { useNutrition } from '@/context/NutritionContext';
 
-export default function DailyLog2() {
+export default function DailyLog() {
   const { foodLog, removeFoodFromLog } = useNutrition();
 
-  // Define meal sections with icons/emojis
   const mealSections = [
     { id: 'breakfast', title: '🍳 Breakfast' },
     { id: 'lunch', title: '🥪 Lunch' },

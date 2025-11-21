@@ -44,7 +44,6 @@ export default function ProgressPage() {
 
       {activeTab === 'dashboard' && (
         <div className="space-y-8 text-black">
-          {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <SummaryCard 
               title="Streak" 
@@ -72,7 +71,6 @@ export default function ProgressPage() {
             />
           </div>
 
-          {/* Charts and Stats */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ProgressChart />
             <StatsSummary />
@@ -85,8 +83,7 @@ export default function ProgressPage() {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Detailed Progress</h2>
             <p className="text-gray-600">View your detailed nutrition data over time.</p>
-            
-            {/* Full width chart in detailed view */}
+
             <div className="mt-6">
               <ProgressChart />
             </div>
@@ -104,7 +101,6 @@ export default function ProgressPage() {
   );
 }
 
-// Helper component for summary cards
 function SummaryCard({ title, value, icon, description }) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">

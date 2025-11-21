@@ -4,11 +4,9 @@ import { useNutrition } from '@/context/NutritionContext';
 
 export default function StatsSummary() {
   const { foodLog, calculateTotals } = useNutrition();
-  
-  // Calculate totals from all meals
+
   const totals = calculateTotals();
-  
-  // Calculate totals for each meal type
+
   const mealTotals = {
     breakfast: {
       calories: foodLog.breakfast.reduce((sum, food) => sum + (food.calories || 0), 0),
@@ -35,12 +33,6 @@ export default function StatsSummary() {
       fat: foodLog.snacks.reduce((sum, food) => sum + (food.fat || 0), 0)
     }
   };
-  
-  // Count total food items
-  const totalItems = Object.values(foodLog).reduce(
-    (sum, mealItems) => sum + mealItems.length, 
-    0
-  );
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">

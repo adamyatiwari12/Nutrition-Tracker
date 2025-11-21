@@ -2,9 +2,9 @@
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import FoodSearch2 from '@/components/tracker/FoodSearch2';
-import DailyLog2 from '@/components/tracker/DailyLog2';
-import NutritionSummary2 from '@/components/tracker/NutritionSummary2';
+import FoodSearch2 from '@/components/tracker/FoodSearch';
+import DailyLog2 from '@/components/tracker/DailyLog';
+import NutritionSummary2 from '@/components/tracker/NutritionSummary';
 
 export default function TrackerPage() {
   return (
@@ -19,18 +19,13 @@ export default function TrackerPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
-            {/* Left Column - Food Search */}
             <div className="lg:col-span-2 text-black">
               <FoodSearch2 />
             </div>
-
-            {/* Right Column - Nutrition Summary */}
             <div className='text-black'>
               <NutritionSummary2 />
             </div>
           </div>
-
-          {/* Daily Log - Full Width */}
           <div className="mt-6 text-black">
             <DailyLog2 />
           </div>

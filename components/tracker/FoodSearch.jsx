@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { searchFoods } from "@/lib/api2";
+import { searchFoods } from "@/lib/api";
 import { useNutrition } from "@/context/NutritionContext"; 
 
-export default function FoodSearch2() {
+export default function FoodSearch() {
   const [query, setQuery] = useState("");
   const [selectedMeal, setSelectedMeal] = useState("breakfast");
   const [searchResults, setSearchResults] = useState([]);
